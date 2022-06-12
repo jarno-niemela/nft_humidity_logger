@@ -26,7 +26,7 @@ RuuviTagSensor.get_datas(handle_data, run_flag=run_flag)
 sensor_count=0
 for sensor in found_sensors :
     sensor_count+=1
-    with open("found_sensor_%d"%sensor_count) as output:
+    with open("found_sensor_%d.json"%sensor_count,"w") as output:
         sensor_data=dict()
         sensor_data["type"] = "ruuvitag"
         sensor_data["id"] = sensor
