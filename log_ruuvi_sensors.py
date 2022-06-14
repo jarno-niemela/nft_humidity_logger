@@ -30,7 +30,7 @@ for sensor_config_name in glob.glob("monitor_sensor_*.json"):
             print("ERROR same MAC address in two config files, skipping %s"%sensor_config_name)
 
 # List of macs of sensors which will execute callback function
-while true:
+while True:
     for sensor_mac in sensors:
         RuuviTagSensor.get_datas(handle_data,macs=[sensor_mac])
     time.sleep(600)
