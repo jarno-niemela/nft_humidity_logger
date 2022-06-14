@@ -3,6 +3,7 @@ from pprint import pprint
 import json
 import time
 import glob
+import datetime
 
 sleep_delay = 600
 sensors=dict()
@@ -12,6 +13,7 @@ run_flag = RunFlag()
 def handle_data(sensor_data):
     pprint(sensor_data)
     data=dict()
+    data["time"]=datetime.datetime.now().isoformat()
     data["id"]=sensor_data[0]
     data["name"]=sensors[data["id"]]["name"]
     data["humidity"]=sensor_data[1]["humidity"]
