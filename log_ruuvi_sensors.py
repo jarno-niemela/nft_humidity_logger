@@ -19,6 +19,7 @@ def handle_data(sensor_data):
 
     with open("ruuvi_sensor_data.log","a") as output:
         json.dump(data,output)
+        output.write("\n")
     run_flag.running = False
 
 #Import sensor configs
