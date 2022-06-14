@@ -35,6 +35,7 @@ for sensor_config_name in glob.glob("monitor_sensor_*.json"):
 # List of macs of sensors which will execute callback function
 while True:
     for sensor_mac in sensors:
+        run_flag.running = True
         RuuviTagSensor.get_datas(handle_data,[sensor_mac],run_flag)
     time.sleep(600)
 
