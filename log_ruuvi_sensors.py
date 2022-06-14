@@ -12,7 +12,7 @@ def handle_data(sensor_data):
 
 #Import sensor configs
 for sensor_config_name in glob.glob("monitor_sensor_*.json"):
-    with sensor_file in open(sensor_config_name,"r"):
+    with open(sensor_config_name,"r") as sensor_file:
         sensor_config=json.load(sensor_file)
         sensor_config["type"]=="ruuvitag"
 
