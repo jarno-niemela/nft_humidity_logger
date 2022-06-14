@@ -9,6 +9,14 @@ sensors=dict()
 
 def handle_data(sensor_data):
     pprint(sensor_data)
+    data=dict()
+    data["id"]=sensor_data[0]
+    data["name"]=sensors[data["id"]]
+    data["humidity"]=sensor_data[1]["humidity"]
+    data["temperature"] = sensor_data[1]["temperature"]
+
+    with open("ruuvi_sensor_data.log","a") as output:
+        json.dump(data,output)
 
 #Import sensor configs
 for sensor_config_name in glob.glob("monitor_sensor_*.json"):
@@ -22,5 +30,8 @@ for sensor_config_name in glob.glob("monitor_sensor_*.json"):
             print("ERROR same MAC address in two config files, skipping %s"%sensor_config_name)
 
 # List of macs of sensors which will execute callback function
-RuuviTagSensor.get_datas(handle_data,macs=sensors.keys())
+while true:
+    for sensor_mac in sensors:
+        RuuviTagSensor.get_datas(handle_data,macs=[sensor_mac])
+    time.sleep(600)
 
