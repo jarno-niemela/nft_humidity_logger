@@ -13,7 +13,7 @@ def handle_data(sensor_data):
     pprint(sensor_data)
     data=dict()
     data["id"]=sensor_data[0]
-    data["name"]=sensors[data["id"]]
+    data["name"]=sensors[data["id"]]["name"]
     data["humidity"]=sensor_data[1]["humidity"]
     data["temperature"] = sensor_data[1]["temperature"]
 
