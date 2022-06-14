@@ -6,6 +6,8 @@ import glob
 
 sleep_delay = 600
 sensors=dict()
+run_flag = RunFlag()
+
 
 def handle_data(sensor_data):
     pprint(sensor_data)
@@ -17,6 +19,7 @@ def handle_data(sensor_data):
 
     with open("ruuvi_sensor_data.log","a") as output:
         json.dump(data,output)
+    run_flag.running = False
 
 #Import sensor configs
 for sensor_config_name in glob.glob("monitor_sensor_*.json"):
@@ -32,6 +35,6 @@ for sensor_config_name in glob.glob("monitor_sensor_*.json"):
 # List of macs of sensors which will execute callback function
 while True:
     for sensor_mac in sensors:
-        RuuviTagSensor.get_datas(handle_data,macs=[sensor_mac])
+        RuuviTagSensor.get_datas(handle_data,macs=[sensor_mac],run_flag)
     time.sleep(600)
 
